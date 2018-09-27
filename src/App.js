@@ -4,6 +4,12 @@ import Kid from "./Screens/Kid/Kid";
 import Teacher from "./Screens/Teacher/Teacher";
 import Judge from "./Screens/Judges/Judges";
 
+// material ui 
+import SimpleAppBar from "./MaterialCompoents/AppBar";
+import { Button, Typography } from "@material-ui/core";
+import ExitToApp from "@material-ui/icons/ExitToApp";
+// material ui 
+
 class App extends Component {
   constructor() {
     super();
@@ -48,18 +54,18 @@ class App extends Component {
     const { nextSteps, applaud, stars, available, renderJudges } = this.state
     return (
       <div className="App">
-        <h1 className="App-title">React Life-Cycle Hooks</h1>
+        <SimpleAppBar />
+        <Typography variant="display1">React Life-Cycle Hooks</Typography>
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header> */}
         {
           available ? <div>
-            <Kid dressColor="blue" furtherSteps={nextSteps} sendApplaudStatus={applaud} sendStars={stars} renderJudgesComp={this.renderJudgesComp} />
+            <Kid dressColor="green" furtherSteps={nextSteps} sendApplaudStatus={applaud} sendStars={stars} renderJudgesComp={this.renderJudgesComp} />
             <hr />
             <Teacher myCallBack={this.furtherSteps} />
-            <br />
-            <button onClick={() => { this.setState({ available: false }); }}>Leave Kid</button>
-          </div> : <div>Kid is not available</div>
+            <Button variant="contained" color="primary" onClick={() => { this.setState({ available: false }); }}>Leave Kid <ExitToApp /></Button>
+          </div> : <Typography variant="headline">Kid is not available</Typography>
         }
         <hr />
         {
