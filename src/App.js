@@ -6,8 +6,10 @@ import Judge from "./Screens/Judges/Judges";
 
 // material ui 
 import SimpleAppBar from "./MaterialCompoents/AppBar";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Paper, Grid } from "@material-ui/core";
 import ExitToApp from "@material-ui/icons/ExitToApp";
+import Face from "@material-ui/icons/Face";
+import Group from "@material-ui/icons/Group";
 // material ui 
 
 class App extends Component {
@@ -52,25 +54,36 @@ class App extends Component {
 
   render() {
     const { nextSteps, applaud, stars, available, renderJudges } = this.state
+    const paperStyle = { padding: '20px', margin: "20px" }
     return (
       <div className="App">
         <SimpleAppBar />
-        <Typography variant="display1">React Life-Cycle Hooks</Typography>
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header> */}
-        {
-          available ? <div>
-            <Kid dressColor="green" furtherSteps={nextSteps} sendApplaudStatus={applaud} sendStars={stars} renderJudgesComp={this.renderJudgesComp} />
-            <hr />
-            <Teacher myCallBack={this.furtherSteps} />
-            <Button variant="contained" color="primary" onClick={() => { this.setState({ available: false }); }}>Leave Kid <ExitToApp /></Button>
-          </div> : <Typography variant="headline">Kid is not available</Typography>
-        }
-        <hr />
-        {
-          renderJudges ? <Judge getApplaudStatus={this.getApplaudStatus} recieveStars={this.recieveStars} available={available} /> : <div>Judges left the Auditorium</div>
-        }
+        <Grid container spacing={24} direction="row" justify="space-evenly" alignItems="center">
+          <Grid item xs={6}>
+            <Paper style={paperStyle}>
+              <Typography variant="headline">KID <Face /></Typography>
+              <hr />
+              {
+                available ? <div>
+                  <Kid dressColor="green" furtherSteps={nextSteps} sendApplaudStatus={applaud} sendStars={stars} renderJudgesComp={this.renderJudgesComp} />
+                  <hr />
+                  <Teacher myCallBack={this.furtherSteps} />
+                  <Button variant="contained" color="primary" onClick={() => { this.setState({ available: false }); }}>Leave Kid <ExitToApp /></Button>
+                </div> : <Typography variant="headline">Kid is not available</Typography>
+              }
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={paperStyle}>
+              <Typography variant="headline">Judges <Group /></Typography>
+              <hr />
+              {
+                renderJudges ? <Judge getApplaudStatus={this.getApplaudStatus} recieveStars={this.recieveStars} available={available} /> : <Typography variant="headline">Judges left the Auditorium</Typography>
+              }
+            </Paper>
+          </Grid>
+          {/* <Typography variant="display1">React Life-Cycle Hooks</Typography> */}
+        </Grid>
       </div>
     );
   }
