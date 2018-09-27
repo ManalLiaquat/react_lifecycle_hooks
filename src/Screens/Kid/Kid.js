@@ -1,5 +1,10 @@
 import React from 'react';
 
+// material ui 
+import NavigateNext from "@material-ui/icons/NavigateNext";
+import { Button, Typography } from "@material-ui/core";
+// material ui 
+
 export default class Kid extends React.Component {
 
   constructor(props) {
@@ -42,14 +47,17 @@ export default class Kid extends React.Component {
     // console.log(danceSteps, currentStepIndex, danceSteps[currentStepIndex], "***");
     return (
       <div>
-        <div>dressColor: {dressColor})</div>
-        <div style={{ backgroundColor: dressColor, width: 50, height: 50 }}></div>
-        <div>Performing: {startedPerforming ? 'yes' : 'no'}</div>
-        <div>Emotion: {emotion})</div>
-        {startedPerforming && <div>
-          Current Step: {danceSteps[currentStepIndex]})
-                <button onClick={() => this.setState({ currentStepIndex: currentStepIndex + 1 })}>Perform Next Step</button>
-        </div>}
+        <center>
+          <div style={{ backgroundColor: dressColor, width: 50, height: 50 }}></div>
+        </center>
+        <Typography variant="headline">Dress Color: {dressColor}</Typography>
+        <Typography variant="title">Performing: {startedPerforming ? 'yes' : 'no'}</Typography>
+        <Typography variant="title">Emotion: {emotion}</Typography>
+        {startedPerforming && <Typography variant="display2">
+          Current Step: {danceSteps[currentStepIndex]}
+          <br />
+          <Button variant="outlined" color="primary" onClick={() => this.setState({ currentStepIndex: currentStepIndex + 1 })}>Perform Next Step <NavigateNext /></Button>
+        </Typography>}
       </div>
     );
   }

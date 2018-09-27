@@ -1,5 +1,11 @@
 import React from "react";
 
+// material ui 
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import StarRate from "@material-ui/icons/StarRate";
+import { Button, Typography } from "@material-ui/core";
+// material ui 
+
 export default class Judge extends React.Component {
   constructor(props) {
     super(props)
@@ -32,13 +38,13 @@ export default class Judge extends React.Component {
 
     return (
       <div>
-        <button type="button" onClick={this.applaud}>Appreciate performance</button>
-        <button type="button" onClick={this.provideStars}>Provide stars</button>
         <br />
-        Kid is available: {available ? "yes" : 'no'}
+        <Typography variant="display1">Kid is available: {available ? "yes" : 'no'}</Typography>
         <br />
-        Stars gained: {stars}
+        <Typography variant="title">Stars gained: {stars}</Typography>
         <br />
+        <Button variant="outlined" color="secondary" type="button" onClick={this.applaud}>Appreciate performance <FavoriteBorder /></Button>
+        <Button variant="outlined" color="primary" type="button" onClick={this.provideStars}>Provide stars <StarRate /></Button>
       </div>
     );
   }
