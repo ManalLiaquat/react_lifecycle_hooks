@@ -26,10 +26,8 @@ export default class Judge extends React.Component {
     this.props.recieveStars(stars + 1)
   }
 
-  shouldComponentUpdate() {
-    const { stars } = this.state;
-
-    return stars < 5 ? true : false
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.stars <= 5
   }
 
   render() {

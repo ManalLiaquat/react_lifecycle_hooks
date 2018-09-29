@@ -13,27 +13,35 @@ export default class Kid extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { furtherSteps, sendApplaudStatus } = props
-    // console.log(state.danceSteps)
-    // console.log(props);
-
-    return { danceSteps: furtherSteps, emotion: sendApplaudStatus ? 'Happy' : 'nervous' }
+    // const { furtherSteps, sendApplaudStatus } = props
+    // const oldSteps = state.danceSteps;
+    // const newSteps = props.furtherSteps;
+    // const newArr = oldSteps.concat(newSteps)
+    // return { danceSteps: newArr, emotion: sendApplaudStatus ? 'Happy' : 'nervous' }
+    let newDanceSteps = [...state.danceSteps, ...props.furtherSteps]
+    return {
+      danceSteps: state.danceSteps.length < 5 ? newDanceSteps : state.danceSteps,
+      emotion: props.sendApplaudStatus ? 'Happy' : 'nervous',
+      startedPerforming: newDanceSteps.length >= 5 ? true : props.sendStars === 5 ? true : false
+    }
   }
 
   componentDidMount() {
     const { danceSteps } = this.state
     danceSteps.push('step1');
     danceSteps.push('step2');
-    this.setState({ danceSteps, startedPerforming: true })
+    this.setState({ danceSteps })
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.sendStars === 4) {
       this.qualified()
+      console.log(prevProps.sendStars);
     }
   }
 
   qualified() {
+    console.log('qualified***')
     this.setState({ startedPerforming: false })
   }
 
@@ -42,9 +50,10 @@ export default class Kid extends React.Component {
   }
 
   render() {
-    const { dressColor } = this.props;
+    const { dressColor, sendStars } = this.props;
     const { danceSteps, emotion, startedPerforming, currentStepIndex } = this.state;
-    // console.log(danceSteps, currentStepIndex, danceSteps[currentStepIndex], "***");
+    console.log('===>', sendStars, startedPerforming);
+    // currentStepIndex, danceSteps[currentStepIndex], "***");
     return (
       <div>
         <center>

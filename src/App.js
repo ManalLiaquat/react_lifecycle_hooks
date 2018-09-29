@@ -47,6 +47,10 @@ class App extends Component {
 
   }
 
+  // static getDerivedStateFromProps() {
+  //   // this.setState()
+  //   return { volume: 5, available: true, renderJudges: true }
+  // }
   componentWillMount() {
     this.setState({ volume: 5, available: true, renderJudges: true })
   }
