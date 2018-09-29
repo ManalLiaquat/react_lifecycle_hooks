@@ -10,6 +10,7 @@ export default class Kid extends React.Component {
   constructor(props) {
     super(props);
     this.state = { emotion: 'nervous', danceSteps: [], currentStepIndex: 0, startedPerforming: false };
+    // this.qualified = this.qualified.bind(this)
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -22,7 +23,7 @@ export default class Kid extends React.Component {
     return {
       danceSteps: state.danceSteps.length < 5 ? newDanceSteps : state.danceSteps,
       emotion: props.sendApplaudStatus ? 'Happy' : 'nervous',
-      startedPerforming: newDanceSteps.length >= 5 ? true : props.sendStars === 5 ? true : false
+      startedPerforming: newDanceSteps.length >= 5 ? props.sendStars !== 5 ? true : false : false
     }
   }
 
@@ -33,17 +34,19 @@ export default class Kid extends React.Component {
     this.setState({ danceSteps })
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.sendStars === 4) {
-      this.qualified()
-      console.log(prevProps.sendStars);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.sendStars === 4) {
+  //     this.qualified()
+  //     prevState.startedPerforming = false
+  //     // console.log(prevProps.sendStars);
+  //     // console.log(prevState.startedPerforming);
+  //   }
+  // }
 
-  qualified() {
-    console.log('qualified***')
-    this.setState({ startedPerforming: false })
-  }
+  // qualified() {
+  //   console.log('qualified***')
+  //   this.setState({ startedPerforming: false })
+  // }
 
   componentWillUnmount() {
     this.props.renderJudgesComp(false)

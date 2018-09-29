@@ -43,8 +43,7 @@ class App extends Component {
 
   renderJudgesComp(param) {
     this.setState({ renderJudges: param })
-    console.log(param);
-
+    // console.log(param);
   }
 
   // static getDerivedStateFromProps() {
