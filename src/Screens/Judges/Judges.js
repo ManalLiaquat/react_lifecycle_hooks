@@ -1,33 +1,33 @@
 import React from "react";
 
-// material ui 
+// material ui
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import StarRate from "@material-ui/icons/StarRate";
 import { Button, Typography } from "@material-ui/core";
-// material ui 
+// material ui
 
 export default class Judge extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { stars: 0, available: props.available }
-    this.applaud = this.applaud.bind(this)
-    this.provideStars = this.provideStars.bind(this)
+    super(props);
+    this.state = { stars: 0, available: props.available };
+    this.applaud = this.applaud.bind(this);
+    this.provideStars = this.provideStars.bind(this);
   }
 
   applaud() {
-    this.props.getApplaudStatus(true)
+    this.props.getApplaudStatus(true);
   }
 
   provideStars() {
     const { stars } = this.state;
     this.setState({
       stars: stars + 1
-    })
-    this.props.recieveStars(stars + 1)
+    });
+    this.props.recieveStars(stars + 1);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextState.stars <= 5
+    return nextState.stars <= 5;
   }
 
   render() {
@@ -37,12 +37,28 @@ export default class Judge extends React.Component {
     return (
       <div>
         <br />
-        <Typography variant="display1">Kid is available: {available ? "yes" : 'no'}</Typography>
+        <Typography variant="display1">
+          Kid is available: {available ? "yes" : "no"}
+        </Typography>
         <br />
         <Typography variant="title">Stars gained: {stars}</Typography>
         <br />
-        <Button variant="outlined" color="secondary" type="button" onClick={this.applaud}>Appreciate performance <FavoriteBorder /></Button>
-        <Button variant="outlined" color="primary" type="button" onClick={this.provideStars}>Provide stars <StarRate /></Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          type="button"
+          onClick={this.applaud}
+        >
+          Appreciate performance <FavoriteBorder />
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          type="button"
+          onClick={this.provideStars}
+        >
+          Provide stars <StarRate />
+        </Button>
       </div>
     );
   }
